@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoComplete</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+    </script>  
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">  
+    </script>  
+    
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+        rel="stylesheet" type="text/css" /> 
+</head>
+<body>
+    <h1>Enter input here</h1>
+    <input type="text" id="tags" oninput="fuz()">
+    <p id="1"></p>
+    <p id="2"></p>
+    <p id="3"></p>
+    <p id="4"></p>
+    <p id="5"></p>
+    <script charset="UTF-8" src="https://cdn.jsdelivr.net/npm/fuzzball@2.1.2/dist/fuzzball.umd.min.js"></script>
+    <script>
+      const fuz = () =>{
+
+        console.log(fuzzball.ratio("fuzz", "fuzzy"));
+
+        const words = ['Abdominal pain','Abdominal redness','Abdominal swelling','Abnormal sweating','Acne', 'Allergy', 'Anal Fissure', 'Anal pain', 'Anemia','Anhedonia','Ankle pain','Anxiety','Appendicitis', 'Arm pain', 'Arm swelling', 'Arm weakness', 'Armpit pain', 'Armpit swelling','Attention deficit','Back pain','Bad breath','Bad or bitter taste','Black or tarry stool','Bladder Infection (UTI)','Blood in stool','Blood in urine','Blurry vision','Bronchitis','Bulging eye','Burning or painful urination','Buttocks pain','Calf pain','Calf swelling','Cheek pain','Cheek swelling','Chest pain','Chills','Confusion','Constipation','Cool bluish skin','Cough','COVID-19','Decreased appetite','Decreased hearing','Decreased urination','Decreased vision','Dental pain','Diarrhea','Difficulty urinating','Dizziness','Drooping eyelid','Dry mouth','Dry mucous membranes','Dry skin','Ear discharge','Ear pain','Ear pressure','Ear swelling','Elbow pain','Emotional stress','Erectile dysfunction','Excessive thirst','Excessive urination','Eye deviation','Eye discharge','Eye dryness','Eye floaters','Eye Infection','Eye pain','Eye redness','Eyelid pain','Eyelid redness','Eyelid swelling','Facial droop','Facial lesions','Facial numbness or tingling','Facial pain','Facial swelling','Fainting (passing out)','Fatigue','Feeling cold','Feeling down','Feeling faint','Fever','Finger discoloration','Finger pain','Flank pain','Flashing lights in vision','Flatulence','Food Poisoning','Foot fungus','Foot numbness or tingling','Foot pain','Foot redness','Foot sores','Foot swelling','Forearm pain','Foreign body in the eye','Frequent burping','Frequent night urination','Frequent urination','Gastroenteritis','Genital lesions','Goiter','Groin pain','Groin swelling','Hair loss','Hand numbness or tingling','Hand pain','Hand redness','Hand swelling','Headache','Heart palpitations'];
+
+        var inp = document.getElementById("tags").value;
+        
+        options = {
+        //scorer: WRatio, // Any function that takes two values and returns a score, default: ratio
+        limit: 3, // Max number of top results to return
+        cutoff: 60, // Lowest score to return
+        };
+
+        results = fuzzball.extract(inp, words, options);
+        document.getElementById('1').innerHTML = results
+        if(results.length >= 1){
+          document.getElementById('1').innerHTML = "The top suggestion is "+results[0][0]
+        }
+        if(results.length >= 2){
+          document.getElementById('2').innerHTML = "The second suggestion is "+results[1][0]
+        }
+        if(results.length >= 3){
+          document.getElementById('3').innerHTML = "The third suggestion is "+results[2][0]
+        }
+        if(results.length >= 4){
+          document.getElementById('4').innerHTML = "The fourth suggestion is "+results[3][0]
+        }
+        if(results.length >= 5){
+          document.getElementById('5').innerHTML = "The fifth suggestion is "+results[4][0]
+        }
+      }
+    </script>
+
+</body>
+</html>
